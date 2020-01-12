@@ -1,0 +1,78 @@
+<html>
+
+<head>
+    <title>MF Social Media</title>
+    <script src="https://unpkg.com/history@4.9.0"></script>
+    <script src="http://localhost:3001/login.js"></script>
+    <script src="http://localhost:3002/feed.js"></script>
+    <script src="http://localhost:3003/feedsPage.js"></script>
+    <script src="http://localhost:3010/error.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <div></div>
+    </div>
+    <a href="/error">Error</a>
+    <a href="/login">Login</a>
+
+    <script type="module">
+        const loadComponentForRouteConfig = (location) => {
+                let routeConfig = routes[location.pathname];
+                if (routeConfig === undefined || routeConfig === null) {
+                    routeConfig = routes['/error']; 
+                }
+                if (routeConfig.type === 'component') {
+                    let componentName = routeConfig.componentName;
+                    let currentLoadedComponent = root.firstChild;
+                    let newComponent = document.createElement(componentName);
+                    if (currentLoadedComponent.node === undefined) {
+                        root.replaceChild(newComponent, currentLoadedComponent);
+                    } else if (currentLoadedComponent.node.toLowerCase() !== componentName) {
+                        root.replaceChild(newComponent, currentLoadedComponent);
+                    }
+                }
+            }
+
+
+        const routes = {
+                '/': {
+                    componentName: 'login-page',
+                    type: 'component',
+                    params: null
+                },
+                '/login': {
+                    componentName: 'login-page',
+                    type: 'component',
+                    params: null
+                },
+                '/feeds': {
+                    componentName: 'feeds-page',
+                    type: 'component',
+                    params: null
+                },
+                '/error': {
+                    componentName: 'error-page',
+                    type: 'component',
+                    params: null
+                }
+            };
+
+            const root = document.getElementById("app");
+            
+            const appHistory = window.History.createBrowserHistory();
+            appHistory.listen(loadComponentForRouteConfig);
+            loadComponentForRouteConfig(window.location); 
+
+
+            document.addEventListener("click", e => {
+                if (e.target.nodeName === "A") {
+                    const href = e.target.getAttribute("href");
+                    appHistory.push(href);
+                    e.preventDefault();
+            }
+      });
+        </script>
+</body>
+
+</html>

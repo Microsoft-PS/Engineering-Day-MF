@@ -1,0 +1,20 @@
+{
+    "name": "mf-social-media",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+        "login": "npx mfserve --listen 3001 login",
+        "feed": "npx mfserve --listen 3002 feed",
+        "feedsPage": "npx mfserve --listen 3003 feedsPage",
+        "error": "npx mfserve --listen 3010 error",
+        "app": "npx mfserve --listen 3000 --single app",
+        "start": "npm run login npm run feed npm run feedsPage npm run app"
+    },
+    "author": "",
+    "license": "ISC",
+    "dependencies": {
+        "@microfrontends/serve": "^11.2.0",
+        "history": "^4.10.1"
+    }
+}
