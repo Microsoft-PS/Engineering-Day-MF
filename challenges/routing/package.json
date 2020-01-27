@@ -9,7 +9,7 @@
         "feedsPage": "npx mfserve --listen 3003 feedsPage",
         "error": "npx mfserve --listen 3010 error",
         "app": "npx mfserve --listen 3000 --single app",
-        "start": "npm run login npm run feed npm run feedsPage npm run app"
+        "start": "npm run login && npm run feed && npm run feedsPage && npm run app"
     },
     "author": "",
     "license": "ISC",

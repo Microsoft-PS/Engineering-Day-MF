@@ -7,6 +7,15 @@
     <script src="http://localhost:3002/feed.js"></script>
     <script src="http://localhost:3003/feedsPage.js"></script>
     <script src="http://localhost:3010/error.js"></script>
+    
+    <script src="http://localhost:8080/app_bundle.js"></script>
+    
+    <script src="http://localhost:4200/runtime.js"></script>
+    <script src="http://localhost:4200/polyfills.js"></script>
+    <script src="http://localhost:4200/styles.js"></script>
+    <script src="http://localhost:4200/scripts.js"></script>
+    <script src="http://localhost:4200/vendor.js"></script>
+    <script src="http://localhost:4200/main.js"></script>
 </head>
 
 <body>
@@ -15,23 +24,43 @@
     </div>
     <a href="/error">Error</a>
     <a href="/login">Login</a>
+    <a href="/react">React-Sample</a>
+    <a href="/ng">Angular-Sample</a>
 
     <script type="module">
+        let previousConfig = null;
         const loadComponentForRouteConfig = (location) => {
                 let routeConfig = routes[location.pathname];
                 if (routeConfig === undefined || routeConfig === null) {
                     routeConfig = routes['/error']; 
                 }
-                if (routeConfig.type === 'component') {
+                if (routeConfig.type === 'component' || routeConfig.type === 'angular')  {
                     let componentName = routeConfig.componentName;
                     let currentLoadedComponent = root.firstChild;
                     let newComponent = document.createElement(componentName);
-                    if (currentLoadedComponent.node === undefined) {
-                        root.replaceChild(newComponent, currentLoadedComponent);
-                    } else if (currentLoadedComponent.node.toLowerCase() !== componentName) {
+                    if (previousConfig !== null && previousConfig.type === "react") {
+                        let removeMethod = previousConfig.removeMethod;
+                        window[removeMethod]();
+                        root.appendChild(newComponent, currentLoadedComponent);
+                    } else {
                         root.replaceChild(newComponent, currentLoadedComponent);
                     }
+                    // if (currentLoadedComponent.node === undefined) {
+                    //     root.replaceChild(newComponent, currentLoadedComponent);
+                    // } else if (currentLoadedComponent.node.toLowerCase() !== componentName) {
+                    //     root.replaceChild(newComponent, currentLoadedComponent);
+                    // }
                 }
+
+                if (routeConfig.type === "react") {
+                    let currentLoadedComponent = root.firstChild;
+                    if (currentLoadedComponent.node === undefined) {
+                        root.removeChild(currentLoadedComponent);
+                    }
+                    let renderMethod = routeConfig.renderMethod;
+                    window[renderMethod]();
+                }
+                previousConfig = routeConfig;
             }
 
 
@@ -54,6 +83,18 @@
                 '/error': {
                     componentName: 'error-page',
                     type: 'component',
+                    params: null
+                },
+                '/react': {
+                    componentName: 'App',
+                    type: 'react',
+                    renderMethod: "RenderReact",
+                    removeMethod: "RemoveReact",
+                    params: null
+                },
+                "/ng": {
+                    componentName: "events-elem",
+                    type: 'angular',
                     params: null
                 }
             };
