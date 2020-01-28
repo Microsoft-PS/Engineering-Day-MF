@@ -1,17 +1,17 @@
-const path = require('path');
+var path = require("path");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-const HtmlWebpackPlugin = require("html-webpack-plugin");
+var HtmlWebpackPlugin = require('html-webpack-plugin');
 
 isDevelopment = false;
 module.exports = {
-    entry: './src/index.ts',
+    entry: './src/index.tsx',
     output: {
         path: path.resolve(__dirname, 'dist'),
         filename: 'bundle.js'
     },
     module: {
         rules: [{
-            test: /\.ts?$/,
+            test: /\.tsx?$/,
             loader: 'ts-loader',
             options: {
                 configFile: 'tsconfig.json'
@@ -60,23 +60,21 @@ module.exports = {
             ]
         }]
     },
+    mode: 'development',
     plugins: [
-        new HtmlWebpackPlugin({
-            template: "./index.html"
-        }),
         new MiniCssExtractPlugin({
-            //filename: isDevelopment ? '[name].css' : '[name].[hash].css',
             filename: 'bundle.style.css',
-            //chunkFilename: isDevelopment ? '[id].css' : '[id].[hash].css'
             chunkFilename: 'bundle.style.css'
+        }),
+        new HtmlWebpackPlugin({
+            template: "./src/index.html"
         })
     ],
     resolve: {
-        extensions: [".ts", ".js", ".scss"]
+        extensions: [".ts", ".tsx", ".jsx", ".js", ".scss"]
     },
-    mode: 'development',
     devServer: {
         contentBase: path.join(__dirname, "dist"),
-        port: 9000
+        port: 9010
     }
-}
+};

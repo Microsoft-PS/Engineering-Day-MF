@@ -1,42 +1,35 @@
 {
-    "name": "piggy_bank",
+    "name": "piggy-banking",
     "version": "1.0.0",
-    "description": "",
     "scripts": {
         "build": "webpack --config webpack.config.js",
         "start": "webpack-dev-server --config webpack.config.js --mode development --hot",
         "build:start": "npm run build && npm run start"
     },
-    "author": {
-        "name": "Himanshu K. Gupta & Pratik Bhattacharya",
-        "email": "fxpswe@microsoft.com"
-    },
-    "repository": {
-        "type": "GIT",
-        "directory": "piggyBank",
-        "url": "https://github.com/Microsoft-PS/Engineering-Day-MF"
-    },
-    "license": "MIT",
     "dependencies": {
         "bootstrap": "^4.4.1",
-        "history": "^4.10.1"
+        "react": "^16.12.0",
+        "react-dom": "^16.12.0",
+        "react-redux": "^7.1.3",
+        "redux": "^4.0.5"
     },
     "devDependencies": {
-        "@types/history": "^4.7.4",
+        "@types/react-redux": "^7.1.7",
         "autoprefixer": "^9.7.4",
-        "css-loader": "^3.4.2",
+        "css-loader": "^3.2.0",
         "html-webpack-plugin": "^3.2.0",
         "mini-css-extract-plugin": "^0.9.0",
         "node-sass": "^4.13.1",
         "postcss-loader": "^3.0.0",
         "precss": "^4.0.0",
+        "react-bootstrap": "^1.0.0-beta.16",
         "sass": "^1.25.1-test.1",
         "sass-loader": "^8.0.2",
-        "style-loader": "^1.1.3",
+        "style-loader": "^1.0.0",
         "ts-loader": "^6.2.1",
         "typescript": "^3.7.5",
         "webpack": "^4.41.5",
         "webpack-cli": "^3.3.10",
-        "webpack-dev-server": "^3.10.1"
+        "webpack-dev-server": "^3.9.0"
     }
 }

@@ -1,0 +1,13 @@
+{
+    "name": "pb_login",
+    "version": "1.0.0",
+    "scripts": {
+        "login": "npx mfserve --listen 9001 login",
+        "navbar": "npx mfserve --listen 9002 navbar",
+        "appshell": "npx mfserve --listen 9003 appshell"
+    },
+    "dependencies": {},
+    "devDependencies": {
+        "@microfrontends/serve": "^11.2.2"
+    }
+}
