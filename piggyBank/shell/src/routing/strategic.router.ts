@@ -25,7 +25,7 @@ export class StrategicRouter implements IComponentRouter {
             case "WebComponent":
                 return this._webComponentRouter.Unmount($root, routeConfig);
             case "Custom":
-                return this._customComponentRouter.Mount($root, routeConfig);
+                return this._customComponentRouter.Unmount($root, routeConfig);
         }
     }
 }

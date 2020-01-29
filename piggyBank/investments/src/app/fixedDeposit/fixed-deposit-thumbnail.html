@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<div>
+    <div class="well hoverwell thumbnail">
+      <h2>Account Number: {{ account.number }}</h2>
+      <div>Principal: Rs. {{ account.principal }}</div>
+      <div>Maturity Amount: Rs. {{ account.maturityAmount }}</div>
+      <div>Rate of Interest: {{ account.interest }}%</div>
+      <div>Opened On: {{ account.openedOn.toDateString() }}</div>
+      <div>Mature On: {{ account.maturityOn.toDateString() }}</div>
+      <div>Status: {{ account.status }}</div>
+      <button *ngIf="account.status !== 'Closed'" class="btn btn-primary" (click)="closeAccount()">Close</button>
+    </div>
+  </div>
+  
