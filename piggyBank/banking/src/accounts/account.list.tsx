@@ -58,7 +58,6 @@ class AccountList extends React.Component<any, any> {
     }
 
     render() {
-        console.log(this.state.withdrawalInProgress);
         return (
             <div>
                 <Container className="p-3">

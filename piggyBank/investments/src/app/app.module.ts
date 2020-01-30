@@ -1,5 +1,8 @@
+import { AppStore } from '../store/store';
+import { FormsModule } from '@angular/forms';
+import { NgModule, Injector } from '@angular/core';
+import { createCustomElement } from '@angular/elements';
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
 import { FixedDepositListComponent } from '../app/fixedDeposit/fixed-deposit-list';
 import { FixedDepositThumbnailComponent } from '../app/fixedDeposit/fixed-deposit-thumbnail';
 
@@ -9,9 +12,20 @@ import { FixedDepositThumbnailComponent } from '../app/fixedDeposit/fixed-deposi
         FixedDepositListComponent
     ],
     imports: [
-        BrowserModule
+        BrowserModule,
+        FormsModule
     ],
     providers: [],
-    bootstrap: [FixedDepositListComponent]
+    bootstrap: [!window["banking-portal-context"] ? FixedDepositListComponent : []],
+    entryComponents: [ FixedDepositListComponent ]
 })
-export class AppModule { }
+export class AppModule {
+    constructor(private injector: Injector) {
+        this.bootstrap();
+    }
+
+    bootstrap() {
+        const FixedDepositElement = createCustomElement(FixedDepositListComponent, { injector: this.injector });
+        customElements.define('fixed-deposits', FixedDepositElement);
+    }
+}

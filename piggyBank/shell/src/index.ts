@@ -1,11 +1,17 @@
 import './styles.scss';
 import Router from './routing/router';
 import { createBrowserHistory } from 'history';
+import { GlobalStoreService } from './globalStore/globalStateService';
 
 const router = new Router();
 
 router.addRoute({
     URL: "/",
+    ComponentName: "pb-login",
+    ComponentFramework: "WebComponent"
+});
+router.addRoute({
+    URL: "/login",
     ComponentName: "pb-login",
     ComponentFramework: "WebComponent"
 });
@@ -22,6 +28,12 @@ router.addRoute({
     MountFuncName: "mountAccounts",
     UnmountFuncName: "unmountAccounts"
 });
+router.addRoute({
+    URL: "/app/investments",
+    ComponentName: "fixed-deposits",
+    ComponentFramework: "AngularElement",
+    NestedRootElementId: "app"
+});
 
 const renderComponent = (location: any) => {
     const currentHash = <string>location.hash;
@@ -31,7 +43,8 @@ const renderComponent = (location: any) => {
         if (urlPart !== "") {
             if (urlPart !== "#") {
                 routeToBeRendered = routeToBeRendered + urlPart;
-                router.loadComponent(routeToBeRendered);
+                let isCompleteHash = urlPart === urlParts[urlParts.length - 1];
+                router.loadComponent(routeToBeRendered, isCompleteHash);
                 routeToBeRendered = routeToBeRendered + "/";
             } else {
                 router.loadComponent(routeToBeRendered);
@@ -49,7 +62,8 @@ if (window.location.hash !== "#/") {
 }
 
 
-document.getElementById("root")
-    .addEventListener("Login_success", () => {
-        window.location.hash = "#/app/banking"
-    });
+document.getElementById("root").addEventListener("Login_success", () => {
+    window.location.hash = "#/app/banking"
+});
+
+GlobalStoreService.getInstance();

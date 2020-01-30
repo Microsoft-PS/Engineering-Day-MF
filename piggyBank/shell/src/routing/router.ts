@@ -14,7 +14,7 @@ export default class Router {
         }
     }
 
-    loadComponent = (locationHash: string) => {
+    loadComponent = (locationHash: string, completeHash: boolean = false) => {
         let routeConfig = Router.Routes[locationHash];
         if (routeConfig === undefined || routeConfig === null) {
             routeConfig = Router.Routes[Router.ErrorLocation];
@@ -23,6 +23,9 @@ export default class Router {
 
         const strategicRouter = new StrategicRouter();
         if (Router.LoadedRouteConfigs[$root.id] !== undefined && Router.LoadedRouteConfigs[$root.id] !== null) {
+            if (Router.LoadedRouteConfigs[$root.id].URL.startsWith(locationHash) && !completeHash) {
+                return;
+            }
             strategicRouter.Unmount($root, Router.LoadedRouteConfigs[$root.id]);
         }
         strategicRouter.Mount($root, routeConfig);

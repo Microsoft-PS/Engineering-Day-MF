@@ -1,5 +1,5 @@
-import { Component, Input, Output, EventEmitter } from "@angular/core";
 import { IFixedDepositState } from 'src/store/state';
+import { Component, Input, Output, EventEmitter } from "@angular/core";
 
 @Component({
     selector: 'fixed-deposit-thumbnail',
@@ -20,7 +20,17 @@ export class FixedDepositThumbnailComponent {
     @Input() account: IFixedDepositState;
     @Output() onClose = new EventEmitter();
 
+    isAccountBeingClosed: boolean = false;
+    linkedSavingsAccount: string = "";
+
+    startAccountClose() {
+        this.isAccountBeingClosed  = true;
+    }
+
     closeAccount() {
-        this.onClose.emit(this.account.number);
+        this.onClose.emit({
+            fdAccount: this.account.number,
+            savingsAccount: this.linkedSavingsAccount
+        });
     }
 }

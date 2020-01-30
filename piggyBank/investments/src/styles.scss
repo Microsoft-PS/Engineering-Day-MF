@@ -32,3 +32,31 @@
   .toast-warning {
     background-color: #f89406;
   }
+
+  .thumbnail {
+    background-color: #4e5d6c;
+    border: none;
+    display: block;
+    transition: border .2s ease-in-out;
+    font-family: "Lato","Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-size: 15px;
+  }
+
+  .well {
+    padding: 19px;
+    margin-bottom: 10px;
+    margin-top: 10px;
+    border-radius: 2px;
+    box-shadow: none;
+  }
+
+  .investement-container {
+    background-color: #2b3e50;
+  }
+
+  .thumbnail-header {
+    font-weight: 400;
+    font-family: inherit;
+    line-height: 1.1;
+    color: white;
+  }

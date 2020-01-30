@@ -17,13 +17,28 @@ export class FixedDepositListComponent {
         this._appStore.subscribe(() => {
             this.render();
         });
+        const globalStore = window["GlobalStoreInstance"];
+        if (globalStore) {
+            globalStore.register("Investments", AppStore);
+        }
     }
 
     render() {
         this.fixedDeposits = this._appStore.getState().fixedDeposits;
     }
 
-    handleAccountClose = (accountNumber: string) => {
-        this._appStore.dispatch(Close(accountNumber));
+    handleAccountClose = (event) => {
+        this._appStore.dispatch(Close(event.fdAccount));
+        const currentState = this._appStore.getState();
+        const globalStore = window["GlobalStoreInstance"];
+        if (globalStore) {
+            globalStore.dispatchGlobal({
+                type: 'DEPOSIT',
+                payload: {
+                    accounNumber: event.savingsAccount,
+                    amount: currentState.fixedDeposits.find(fd => fd.number === event.fdAccount).maturityAmount
+                }
+            });
+        }
     }
 }

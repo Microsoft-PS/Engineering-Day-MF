@@ -6,6 +6,15 @@ import { appStore } from './store/store';
 import { Provider } from 'react-redux';
 
 export class Accounts extends React.Component {
+
+    constructor(props: any) {
+        super(props);
+        const globalStore = window["GlobalStoreInstance"];
+        if (globalStore) {
+            globalStore.register("Banking", appStore, ["DEPOSIT", "WITHDRAW"]);
+        }
+    }
+
     render() {
         return (
             <Provider store={appStore}>
