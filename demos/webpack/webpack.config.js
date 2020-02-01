@@ -30,15 +30,15 @@ module.exports = {
                 "vendor"
             ],
             minChunks: (module) => {
-                return module.resource &&
-                    (module.resource.startsWith(Path.join(process.cwd(), 'node_modules')))
+				return module.resource &&
+					(module.resource.startsWith(Path.join(process.cwd(), 'node_modules')));
 
             },
             chunks: ["app"]
         }),
-        //new Webpack.NamedModulesPlugin({}),
+        new Webpack.NamedModulesPlugin({}),
         new NamedModulesPlugin(),
         new Webpack.NamedChunksPlugin()
-    ],
+    ]
 
 }
