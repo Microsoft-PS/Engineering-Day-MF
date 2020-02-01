@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Scoped CSS</title>
+
+    <style>
+        .headerTag {
+            color: red;
+        }
+        
+        h1 {
+            color: grey;
+        }
+    </style>
+
+</head>
+
+<body>
+    <h1 class="headerTag"> Shell Application ... </h1>
+    <div id="container">
+        <style>
+            .myapp .headerTag {
+                color: blue;
+            }
+            
+            .myapp h1 {
+                color: black;
+            }
+        </style>
+        <div class="myapp">
+            <h1> Micro Frontend Application </h1>
+        </div>
+
+    </div>
+</body>
+
+</html>
