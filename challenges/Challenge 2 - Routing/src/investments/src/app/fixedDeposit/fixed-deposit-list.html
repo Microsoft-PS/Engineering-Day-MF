@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<div>
+  <div class="row">
+    <fixed-deposit-thumbnail
+        class="col-md-4"
+        *ngFor="let fixedDeposit of fixedDeposits"
+        [account]="fixedDeposit"
+        (onClose)="handleAccountClose($event)"
+    >
+    </fixed-deposit-thumbnail
+    >
+  </div>
+</div>

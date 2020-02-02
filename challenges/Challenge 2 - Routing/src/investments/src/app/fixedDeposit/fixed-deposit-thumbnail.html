@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<div>
+  <div class="well hoverwell thumbnail">
+
+    <h2 class="thumbnail-header">Account Number: {{ account.number }}</h2>
+    <div>Principal: Rs. {{ account.principal }}</div>
+    <div>Maturity Amount: Rs. {{ account.maturityAmount }}</div>
+    <div>Rate of Interest: {{ account.interest }}%</div>
+    <div>Opened On: {{ account.openedOn.toDateString() }}</div>
+    <div>Mature On: {{ account.maturityOn.toDateString() }}</div>
+    <div>Status: {{ account.status }}</div>
+    <button *ngIf="account.status !== 'Closed' && isAccountBeingClosed === false" class="btn btn-danger"
+      (click)="startAccountClose()">Close</button>
+
+    <div *ngIf="isAccountBeingClosed">
+      <form>
+        <div class="form-group">
+          <label for="accountNum">Savings Account</label>
+          <input class="form-control" type="text" [(ngModel)]="linkedSavingsAccount" [ngModelOptions]="{standalone: true}" id="accountNum"/>
+          <button type = "submit" class="btn btn-primary" (click)="closeAccount()">Submit</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+</div>
