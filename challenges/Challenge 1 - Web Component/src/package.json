@@ -1,0 +1,14 @@
+{
+    "name": "login-web-component",
+    "version": "1.0.0",
+    "author": {
+        "name": ""
+    },
+    "description": "Web Component for Login to the Banking Application",
+    "dependencies": {
+        "http-server": "^0.12.1"
+    },
+    "scripts": {
+        "start": "http-server ./component -p 9001"
+    }
+}
