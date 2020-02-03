@@ -3,6 +3,7 @@ import { createBrowserHistory } from 'history';
 
 var routes: any[] = [];
 
+// Configure the routes
 routes.push({
     URL: "#/login",
     ComponentName: "pb-login",
@@ -15,20 +16,18 @@ routes.push({
 });
 
 const renderComponent = (location: any) => {
-    let hash = location.hash;
-    let $root = document.getElementById("root");
-    if (hash === "#/") {
-        hash = "#/login";
-    }
-    let config = routes.find(route => route.URL === hash);
-    if ($root.firstChild) {
-        $root.removeChild($root.firstChild);
-    }
-    let component = document.createElement(config.ComponentName);
-    $root.appendChild(component);
+    // Hint location.hash will give you the current hash
+
+    // Unload the loaded component if any
+
+    // Create new Custom Element
+
+    // Load the new Custom Element
 }
 
 const appHistory = createBrowserHistory();
+
+// Trigger the renderComponent method on every route change
 appHistory.listen(renderComponent);
 if (window.location.hash !== "#/") {
     window.location.hash = "#/";
