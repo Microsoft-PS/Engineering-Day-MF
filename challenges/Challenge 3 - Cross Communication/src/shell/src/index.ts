@@ -1,7 +1,7 @@
 import './styles.scss';
 import Router from './routing/router';
 import { createBrowserHistory } from 'history';
-import { GlobalStoreService } from './globalStore/globalStateService';
+// import { GlobalStoreService } from './globalStore/globalStateService';
 
 const router = new Router();
 
