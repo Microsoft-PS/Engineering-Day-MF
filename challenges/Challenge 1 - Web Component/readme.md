@@ -12,7 +12,10 @@
 1. Create an autonomous Web Component for Login UI with fields Username: Textbox, Password: Password and Login: Button.
 2. On Click of Login Button the web component needs to dispatch a native JavaScript event “Login_Success”.
 3. You can use the html for building the UI which is available in the file Login.html.
+4. You can test the custom event you are publishing by writing a handler in index.html file.
 
+## Run Application
+You can run the application by firing npm run start command on the root folder of the application. 
 
 ## Web Components Syntax
 ```
@@ -46,3 +49,29 @@ class CustomElement extends HTMLElement {
         // Telling the browser that for any "my-custom-element" tag construct that DOM element using the CustomElement class
         window.customElements.define("my-custom-element", CustomElement);
 ```
+
+## Syntax to create and dispatch CustomEvent 
+```
+var payload = {
+        "productId": "101",
+        "productName": 'Fixed Deposit'
+    };
+var event = new CustomEvent('mycustomevent', { bubbles: true, cancelable: true, detail: payload });
+
+var element = document.getElementById("htmlelement");
+element.dispatchEvent(event);
+
+```
+
+## Syntax to subscribe to an event
+```
+document.getElementById('htmlelement').addEventListener('mycustomevent', function(e) {
+	var label = document.createElement("h3");
+	label.innerText = "This is Handled by H1 tag. Event Payload: " + JSON.stringify(e.detail);
+	document.body.appendChild(label);
+
+});
+
+```
+
+
