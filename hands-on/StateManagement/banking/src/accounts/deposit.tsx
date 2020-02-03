@@ -1,14 +1,13 @@
 import * as React from 'react';
 import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
-import { connect } from 'react-redux';
-import { Deposit } from '../store/deposit.action';
+import { BankingStore } from '../store/appReducer';
 
-class DepositModal extends React.Component<any, any> {
+export class DepositBalance extends React.Component<any, any> {
     public props: DepositPropTypes;
     private withdrawAmount: HTMLInputElement;
 
-    constructor(props: DepositPropTypes) {
+    constructor(props: any) {
         super(props);
         this.state = {
             visible: false
@@ -19,7 +18,6 @@ class DepositModal extends React.Component<any, any> {
 
     saveChange = () => {
         const amount = parseFloat(this.withdrawAmount.value);
-        this.props.Deposit(this.props.accountNumber, amount);
         this.setState({
             visible: false
         });
@@ -68,19 +66,9 @@ class DepositModal extends React.Component<any, any> {
     }
 }
 
-const MapStateToProps = null;
-const MapDispatchToProps = {
-    Deposit
-}
-
 interface DepositPropTypes {
     visible: boolean;
     accountNumber: string;
-    onClose: () => {}
+    onClose: () => void;
     Deposit?: (accountNumber: string, amount: number) => {};
 };
-
-export const DepositBalance = connect(
-    MapStateToProps,
-    MapDispatchToProps
-)(DepositModal);

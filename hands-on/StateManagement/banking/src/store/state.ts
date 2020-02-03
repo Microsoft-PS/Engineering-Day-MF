@@ -1,5 +1,5 @@
 export interface IBankingState {
-    accounts: IAccountState[];
+    accounts: IAccountState[]
 }
 
 export interface IAccountState {

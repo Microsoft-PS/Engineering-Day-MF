@@ -1,14 +1,14 @@
 import * as React from 'react';
 import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
-import { connect } from 'react-redux';
+import { BankingStore } from '../store/appReducer';
 import { Withdraw } from '../store/withdraw.action';
 
-class WithdrawModal extends React.Component<any, any> {
+export class WithdrawBalance extends React.Component<any, any> {
     public props: WithdrawPropTypes;
     private withdrawAmount: HTMLInputElement;
 
-    constructor(props: WithdrawPropTypes) {
+    constructor(props: any) {
         super(props);
         this.state = {
             visible: false
@@ -19,7 +19,8 @@ class WithdrawModal extends React.Component<any, any> {
 
     saveChange = () => {
         const amount = parseFloat(this.withdrawAmount.value);
-        this.props.Withdraw(this.props.accountNumber, amount);
+        const withdrawAction = Withdraw(this.props.accountNumber, amount);
+        BankingStore.dispatch(withdrawAction);
         this.setState({
             visible: false
         });
@@ -76,11 +77,6 @@ const MapDispatchToProps = {
 interface WithdrawPropTypes {
     visible: boolean;
     accountNumber: string;
-    onClose: () => {}
+    onClose: () => void
     Withdraw?: (accountNumber: string, amount: number) => {};
 };
-
-export const WithdrawBalance = connect(
-    MapStateToProps,
-    MapDispatchToProps
-)(WithdrawModal);

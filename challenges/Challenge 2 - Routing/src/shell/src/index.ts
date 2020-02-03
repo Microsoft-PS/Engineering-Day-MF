@@ -18,11 +18,11 @@ routes.push({
 const renderComponent = (location: any) => {
     // Hint location.hash will give you the current hash
 
-    // Unload the loaded component if any
+    // Remove Web Component (removeChild)
 
-    // Create new Custom Element
+    // Instantiate new Element (createElement)
 
-    // Load the new Custom Element
+    // Append new Element (appendChild)
 }
 
 const appHistory = createBrowserHistory();
@@ -35,7 +35,4 @@ if (window.location.hash !== "#/") {
     renderComponent(window.location);
 }
 
-
-document.getElementById("root").addEventListener("Login_success", () => {
-    window.location.hash = "#/investments"
-});
+// Attach an event handler to the Root here for listening to Login_success event

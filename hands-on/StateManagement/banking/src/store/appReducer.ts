@@ -1,4 +1,4 @@
-import { IAction } from './customStore';
+//import { IAction, createStore } from './customStore';
 import { IBankingState, IAccountState } from './state';
 
 const defaultState: IBankingState = {
@@ -30,25 +30,12 @@ const defaultState: IBankingState = {
 	]
 };
 
-const reducer = (state: any = defaultState, action: IAction) => {
-	
-};
-
-const accountReducer = (state: IAccountState, action: IAction): IAccountState => {
+const appReducer = (state: IBankingState = defaultState, action: IAction): IBankingState => {
 	switch (action.type) {
 		case 'DEPOSIT':
-			if (action.payload.accountNumber === state.number)
-				return {
-					...state,
-					balance: state.balance + action.payload.amount
-				};
-			else return state;
-		case 'WITHDRAM':
-			if (action.payload.accountNumber === state.number)
-				return {
-					...state,
-					balance: state.balance - action.payload.amount
-                };
-            else return state;
+		case 'WITHDRAW': 
 	}
+	return state;
 };
+
+export const BankingStore = createStore(appReducer);

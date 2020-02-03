@@ -1,9 +1,9 @@
-import { IAction } from './action.interface';
+import { IAction } from './customStore';
 
-export const Withdraw = (accountNumber: string, amount: number): IAction<any> => ({
-    type: 'WITHDRAW',
-    payload: {
-        accounNumber: accountNumber,
-        amount: amount
-    }
+export const Withdraw = (accountNumber: string, amount: number): IAction => ({
+	type: 'WITHDRAW',
+	payload: {
+		accountNumber: accountNumber,
+		amount: amount
+	}
 });
