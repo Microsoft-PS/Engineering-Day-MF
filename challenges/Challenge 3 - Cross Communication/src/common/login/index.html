@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Pure JS Web Component</title>
+        <script src="./login.js"></script>
+    </head>
+    <body>
+        <pb-login></pb-login>
+
+        <script>
+            document.querySelector("pb-login")
+                .addEventListener("Login_success", () => {
+                    console.log("here!");
+                })
+        </script>
+    </body>
+</html>

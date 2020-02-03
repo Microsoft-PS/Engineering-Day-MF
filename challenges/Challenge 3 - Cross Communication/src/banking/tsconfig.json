@@ -1,0 +1,22 @@
+{
+    "compilerOptions": {
+        "sourceMap": true,
+        "target": "es5",
+        "allowJs": false,
+        "outDir": "lib",
+        "declaration": true,
+        "moduleResolution": "node",
+        "skipLibCheck": true,
+        "lib": ["es2017", "DOM"],
+        "jsx": "react"
+    },
+    "typeRoots": [
+        "node_modules/@types"
+    ],
+    "files": [
+        "src/index.tsx"
+    ],
+    "exclude": [
+        "node_modules/**/*"
+    ]
+}
