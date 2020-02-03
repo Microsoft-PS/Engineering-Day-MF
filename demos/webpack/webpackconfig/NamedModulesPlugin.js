@@ -4,7 +4,7 @@
 */
 "use strict";
 
-const applicationId = "BaningApplication";
+const applicationId = "BankingApplication";
 
 class NamedModulesPlugin {
     constructor(options) {
